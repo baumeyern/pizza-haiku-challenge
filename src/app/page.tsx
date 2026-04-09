@@ -86,8 +86,8 @@ export default function ChallengePage() {
           🍕 Pizza Haiku Challenge 🍕
         </h1>
         <p className="text-white/90 mt-3 text-lg max-w-md mx-auto">
-          Get the AI to write a haiku about pizza — without using the word
-          &quot;pizza&quot; in your prompt. Fewest characters wins!
+          Get the AI to write a haiku about pizza — without using the words
+          pizza, cheese, sauce, or dough in your prompt. Fewest characters wins!
         </p>
       </div>
 
@@ -123,7 +123,7 @@ export default function ChallengePage() {
                 <textarea
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
-                  placeholder="Describe pizza without saying pizza..."
+                  placeholder="Describe pizza without saying pizza, cheese, sauce, or dough..."
                   maxLength={200}
                   rows={3}
                   className="w-full border-2 border-orange-300 rounded-xl px-4 py-3 text-lg
