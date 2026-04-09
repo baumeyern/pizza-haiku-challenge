@@ -20,6 +20,6 @@ export function validatePrompt(prompt: string): ValidationResult {
   return { valid: true };
 }
 
-export function countWords(prompt: string): number {
-  return prompt.trim().split(/\s+/).length;
+export function countCharacters(prompt: string): number {
+  return prompt.trim().length;
 }

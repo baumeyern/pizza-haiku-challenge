@@ -5,7 +5,7 @@ import Link from "next/link";
 
 interface Entry {
   name: string;
-  wordCount: number;
+  charCount: number;
   haiku: string;
   rank: number;
 }
@@ -38,7 +38,7 @@ export default function LeaderboardPage() {
         <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
           🏆 Leaderboard 🏆
         </h1>
-        <p className="text-white/90 mt-2 text-lg">Fewest words wins! Auto-refreshes every 10s.</p>
+        <p className="text-white/90 mt-2 text-lg">Fewest characters wins! Auto-refreshes every 10s.</p>
       </div>
 
       <div className="card w-full max-w-lg">
@@ -63,7 +63,7 @@ export default function LeaderboardPage() {
                     <span className="font-semibold text-lg">{entry.name}</span>
                   </div>
                   <span className="font-bold text-orange-600 text-lg">
-                    {entry.wordCount} word{entry.wordCount !== 1 ? "s" : ""}
+                    {entry.charCount} char{entry.charCount !== 1 ? "s" : ""}
                   </span>
                 </div>
                 <p className="mt-2 text-sm italic text-gray-600 pl-11">

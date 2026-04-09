@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { validateName, validatePrompt, countWords } from "@/lib/validation";
+import { validateName, validatePrompt, countCharacters } from "@/lib/validation";
 
 interface SubmitResult {
   haiku: string;
   isPizza: boolean;
-  wordCount: number;
+  charCount: number;
   leaderboardRank: number | null;
 }
 
@@ -77,7 +77,7 @@ export default function ChallengePage() {
     setResult(null);
   }
 
-  const wordCount = prompt.trim() ? countWords(prompt) : 0;
+  const charCount = prompt.trim() ? countCharacters(prompt.trim()) : 0;
 
   return (
     <main className="min-h-screen flex flex-col items-center px-4 py-8">
@@ -87,7 +87,7 @@ export default function ChallengePage() {
         </h1>
         <p className="text-white/90 mt-3 text-lg max-w-md mx-auto">
           Get the AI to write a haiku about pizza — without using the word
-          &quot;pizza&quot; in your prompt. Fewest words wins!
+          &quot;pizza&quot; in your prompt. Fewest characters wins!
         </p>
       </div>
 
@@ -130,7 +130,7 @@ export default function ChallengePage() {
                              focus:outline-none focus:border-orange-500 resize-none"
                 />
                 <div className="flex justify-between text-sm text-gray-500 mt-1">
-                  <span>{wordCount} word{wordCount !== 1 ? "s" : ""}</span>
+                  <span>{charCount} char{charCount !== 1 ? "s" : ""}</span>
                   <span>{prompt.length}/200</span>
                 </div>
               </div>
@@ -158,7 +158,7 @@ export default function ChallengePage() {
               <div className="bg-green-100 border border-green-300 text-green-800 rounded-xl px-4 py-3 text-center">
                 <p className="text-2xl mb-1">🎉 Success!</p>
                 <p className="font-semibold">
-                  You did it in {result.wordCount} word{result.wordCount !== 1 ? "s" : ""}!
+                  You did it in {result.charCount} char{result.charCount !== 1 ? "s" : ""}!
                   {result.leaderboardRank && ` Rank #${result.leaderboardRank}`}
                 </p>
                 <Link href="/leaderboard" className="text-green-700 underline font-semibold">

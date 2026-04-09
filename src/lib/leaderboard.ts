@@ -1,6 +1,6 @@
 export interface LeaderboardEntry {
   name: string;
-  wordCount: number;
+  charCount: number;
   prompt: string;
   haiku: string;
   timestamp: number;
@@ -13,14 +13,14 @@ export function addEntry(entry: LeaderboardEntry): void {
   const key = entry.name.toLowerCase();
   const existing = entries.get(key);
   // Only keep best (lowest word count) score per player
-  if (!existing || entry.wordCount < existing.wordCount) {
+  if (!existing || entry.charCount < existing.charCount) {
     entries.set(key, entry);
   }
 }
 
 export function getLeaderboard(): (LeaderboardEntry & { rank: number })[] {
   return Array.from(entries.values())
-    .sort((a, b) => a.wordCount - b.wordCount || a.timestamp - b.timestamp)
+    .sort((a, b) => a.charCount - b.charCount || a.timestamp - b.timestamp)
     .map((entry, i) => ({ ...entry, rank: i + 1 }));
 }
 

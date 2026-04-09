@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { validateName, validatePrompt, countWords } from "@/lib/validation";
+import { validateName, validatePrompt, countCharacters } from "@/lib/validation";
 import { generateHaiku, judgeHaiku } from "@/lib/claude";
 import { addEntry, getRank } from "@/lib/leaderboard";
 
@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
 
     const trimmedName = (name as string).trim();
     const trimmedPrompt = (prompt as string).trim();
-    const wordCount = countWords(trimmedPrompt);
+    const charCount = countCharacters(trimmedPrompt);
 
     const haiku = await generateHaiku(trimmedPrompt);
     const isPizza = await judgeHaiku(haiku);
@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     if (isPizza) {
       addEntry({
         name: trimmedName,
-        wordCount,
+        charCount,
         prompt: trimmedPrompt,
         haiku,
         timestamp: Date.now(),
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       haiku,
       isPizza,
-      wordCount,
+      charCount,
       leaderboardRank: isPizza ? getRank(trimmedName) : null,
     });
   } catch (error) {
