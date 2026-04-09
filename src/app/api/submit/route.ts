@@ -42,7 +42,8 @@ export async function POST(request: NextRequest) {
       leaderboardRank: isPizza ? getRank(trimmedName) : null,
     });
   } catch (error) {
-    console.error("Submit error:", error);
-    return NextResponse.json({ error: "Something went wrong. Try again!" }, { status: 500 });
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("Submit error:", message);
+    return NextResponse.json({ error: `Something went wrong: ${message}` }, { status: 500 });
   }
 }
