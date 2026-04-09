@@ -66,7 +66,7 @@ export default function LeaderboardPage() {
                     {entry.charCount} char{entry.charCount !== 1 ? "s" : ""}
                   </span>
                 </div>
-                <p className="mt-2 text-sm italic text-gray-600 pl-11">
+                <p className="mt-2 text-sm italic text-gray-600 pl-11 whitespace-pre-line">
                   &quot;{entry.haiku}&quot;
                 </p>
               </div>
