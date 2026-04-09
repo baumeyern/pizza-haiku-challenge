@@ -1,7 +1,9 @@
 import QRCode from "qrcode";
 
+export const dynamic = "force-dynamic";
+
 export default async function QRPage() {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pizza-haiku-challenge.vercel.app";
   const qrDataUrl = await QRCode.toDataURL(siteUrl, {
     width: 400,
     margin: 2,
